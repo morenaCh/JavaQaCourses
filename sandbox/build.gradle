@@ -1,3 +1,14 @@
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = "MyFirstProgram"
+mainClassName = "qaqources.first.MyFirstProgram"
+mainClassName = "qaqources.first.Kwadrat"
+mainClassName = "qaqources.first.PointNew"
+mainClassName = "qaqources.first.Prostokat"
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    implementation 'org.testng:testng:6.14.3'
+}
