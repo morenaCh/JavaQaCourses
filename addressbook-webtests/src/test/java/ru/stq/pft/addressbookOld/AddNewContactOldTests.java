@@ -1,13 +1,18 @@
-package ru.stq.pft.addressbook;
+package ru.stq.pft.addressbookOld;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import ru.stq.pft.addressbook.GroupDataContact;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import ru.stq.pft.addressbook.GroupDataContact;
-
-public class AddNewContactTests {
+public class AddNewContactOldTests {
   private WebDriver wd;
 
 
