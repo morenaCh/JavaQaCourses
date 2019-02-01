@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import ru.stq.pft.addressbook.GroupDataContact;
+import ru.stq.pft.addressbook.model.GroupDataContact;
 
 import java.util.concurrent.TimeUnit;
 
