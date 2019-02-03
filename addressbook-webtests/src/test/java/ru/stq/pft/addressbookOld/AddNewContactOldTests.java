@@ -34,7 +34,7 @@ public class AddNewContactOldTests {
   @Test
   public void testAddNewContacts() throws Exception {
     initAddNewContact();
-    fillPersonalData(new GroupDataContact("Bozena", "Kaminska", "Chilecka", "Ordona 7B/41", "567-098-098", "bozena.kaminska@gmail.com"));
+    fillPersonalData(new GroupDataContact("Bozena", "Kaminska", "Milczewska", "Ordona 7B/41", "567-098-098", "bozena.milczewska@gmail.com"));
     clickSubmitButton();
     returnToNewContact();
     Logout();
@@ -45,7 +45,7 @@ public class AddNewContactOldTests {
   }
 
   private void returnToNewContact() {
-    wd.findElement(By.linkText("add new")).click();
+    wd.findElement(By.linkText("home")).click();
   }
 
   private void clickSubmitButton() {
@@ -71,7 +71,7 @@ public class AddNewContactOldTests {
     wd.findElement(By.name("mobile")).clear();
     wd.findElement(By.name("mobile")).sendKeys(groupDataContact.getMobilePhone());
     wd.findElement(By.name("email")).click();
-    wd.findElement(By.linkText("add new")).click();
+    //wd.findElement(By.linkText("add new")).click();
     wd.findElement(By.name("email")).clear();
     wd.findElement(By.name("email")).sendKeys(groupDataContact.getEmail());
   }

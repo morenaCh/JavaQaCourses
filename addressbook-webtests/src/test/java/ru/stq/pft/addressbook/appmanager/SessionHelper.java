@@ -2,27 +2,23 @@ package ru.stq.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SessionHelper {
+public class SessionHelper extends BaseHelper {
 
     private WebDriver wd;
 
-    public SessionHelper(ChromeDriver wd) {
-        this.wd=wd;
+    public SessionHelper(WebDriver wd) {
+        super(wd);
     }
 
     public void login(String username, String password) {
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).click();
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).click();
+        type(By.name("user"),username);
+        type(By.name("pass"),password);
+        click(By.xpath("//input[@value='Login']"));
     }
 
     public void logout() {
-        wd.findElement(By.linkText("Logout")).click();
+        click(By.linkText("Logout"));
     }
 
 }
