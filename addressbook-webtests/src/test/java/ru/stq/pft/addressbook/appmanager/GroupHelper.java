@@ -43,4 +43,11 @@ public class GroupHelper extends BaseHelper {
     }
 
 
+    public void initGroupModification() {
+        click(By.xpath("//input[3]"));
+    }
+
+    public void submitGroupModification() {
+        click(By.cssSelector("input[type='submit']"));
+    }
 }

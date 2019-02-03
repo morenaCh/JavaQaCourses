@@ -9,7 +9,7 @@ public class ApplicationManager {
 
     WebDriver wd;
 
-    private ContactHelper contactHelper;
+    public ContactHelper contactHelper;
     private GroupHelper groupHelper;
     private NavigationHelper navigationHelper;
     private SessionHelper sessionHelper; //metoda do ktorej delegujemy 1.link do klasy delegowanej
@@ -43,4 +43,7 @@ public class ApplicationManager {
         return sessionHelper;
     }
 
+    public void switchTo() {
+        wd.switchTo().alert().accept();
+    }
 }
