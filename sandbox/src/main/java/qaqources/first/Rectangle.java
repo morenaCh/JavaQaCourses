@@ -1,11 +1,11 @@
 package qaqources.first;
 
-public class Prostokat {
+public class Rectangle {
 
     public double a;
     public double b;
 
-    public Prostokat(double a,double b){
+    public Rectangle(double a, double b){
 
         this.a=a;
         this.b=b;
@@ -17,7 +17,7 @@ public class Prostokat {
     }
 
 
-    /*public static double powieszchniaProstokata(Prostokat p){
+    /*public static double powieszchniaProstokata(Rectangle p){
 
         return p.a*p.b;
     }*/

@@ -42,9 +42,6 @@ public class ContactHelper extends BaseHelper {
 
     public void initEditContact() {
         click(By.xpath("//td[8]/a/img"));
-                ////table//tbody//tr/td//a[@href='edit.php?id=3']/img
-        ////td[8]/a/img
-        //css=img[alt=['Edit']"
     }
 
     public void clickUpdateButton() {
@@ -53,7 +50,6 @@ public class ContactHelper extends BaseHelper {
 
     public void initDeleteContact() {
         click(By.name("selected[]"));
-        //click(By.xpath("//table//tbody//tr//td//input[@value='10']"));
     }
 
     public void submitDelete() {

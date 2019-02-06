@@ -1,10 +1,10 @@
 package qaqources.first;
 
-public class Kwadrat {
+public class Square {
 
     public double l;
 
-    public Kwadrat(double len){
+    public Square(double len){
 
         this.l=len;
     }
@@ -15,7 +15,7 @@ public class Kwadrat {
 
     }
 
-    /*public static double powieszchniaKwadratu(Kwadrat k){
+    /*public static double powieszchniaKwadratu(Square k){
 
         return k.l*k.l;
 
