@@ -2,8 +2,7 @@ package ru.stq.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import ru.stq.pft.addressbook.model.GroupDataContact;
-import ru.stq.pft.addressbook.model.GroupDataContactModification;
+import ru.stq.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends BaseHelper {
 
@@ -15,20 +14,15 @@ public class ContactHelper extends BaseHelper {
 
 
 
-    public void fillPersonalData(GroupDataContact groupDataContact) {
-        type(By.name("firstname"),groupDataContact.getFirstName());
-        type(By.name("middlename"),groupDataContact.getMiddelname());
-        type(By.name("lastname"), groupDataContact.getLastname());
-        type(By.name("address"),groupDataContact.getAddress());
-        type(By.name("mobile"),groupDataContact.getMobilePhone());
-        type(By.name("email"),groupDataContact.getEmail());
+    public void fillPersonalData(ContactData contactData) {
+        type(By.name("firstname"), contactData.getFirstName());
+        type(By.name("middlename"), contactData.getMiddelname());
+        type(By.name("lastname"), contactData.getLastname());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("email"), contactData.getEmail());
     }
 
-    public void fillPersonalModificationData(GroupDataContactModification groupDataContactModification){
-        type(By.name("address"),groupDataContactModification.getAddress());
-        type(By.name("mobile"),groupDataContactModification.getMobilePhone());
-        type(By.name("email"),groupDataContactModification.getEmail());
-    }
     public void clickSubmitButton() {
 
         click(By.xpath("(//input[@name='submit'])[2]"));

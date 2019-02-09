@@ -1,8 +1,7 @@
 package ru.stq.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
-import ru.stq.pft.addressbook.model.GroupDataContact;
-import ru.stq.pft.addressbook.model.GroupDataContactModification;
+import ru.stq.pft.addressbook.model.ContactData;
 
 public class ContactModificationTests extends BaseTest {
 
@@ -10,7 +9,7 @@ public class ContactModificationTests extends BaseTest {
     public void testContactModification(){
         app.getNavigationHelper().goToHomePage();
         app.contactHelper.initEditContact();
-        app.contactHelper.fillPersonalModificationData( new GroupDataContactModification("Mklaszewska 88/41", "511-011-011", "bozena.kam25@gmail.com"));
+        app.contactHelper.fillPersonalData( new ContactData("Bozena", "Kaminska","Chilecka", "Mklaszewska 88/41", "511-011-011", "bozena.kam25@gmail.com"));
         app.contactHelper.clickUpdateButton();
         app.contactHelper().returnToNewContact();
     }

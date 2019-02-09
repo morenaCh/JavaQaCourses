@@ -21,15 +21,15 @@ public class ApplicationManager {
     private SessionHelper sessionHelper; //metoda do ktorej delegujemy 1.link do klasy delegowanej
 
     public ApplicationManager(String browser) {
-        this.browser=browser;
+        this.browser = browser;
     }
 
-        public void init() {
-        if (browser==BrowserType.CHROME){
+    public void init() {
+        if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
-        }else if(browser==BrowserType.FIREFOX){
+        } else if (browser.equals(BrowserType.FIREFOX)) {
             wd = new FirefoxDriver();
-        }else if(browser==BrowserType.IE) {
+        } else if (browser.equals(BrowserType.IE)) {
             wd = new InternetExplorerDriver();
         }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

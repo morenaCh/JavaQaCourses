@@ -12,10 +12,6 @@ public class BaseHelper {
     public BaseHelper(WebDriver wd) {
         this.wd=wd; }
 
-   // public BaseHelper() {
-
-    //}
-
     protected void click(By locator) {
         wd.findElement(locator).click();
     }

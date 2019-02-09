@@ -6,7 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import ru.stq.pft.addressbook.model.GroupDataContact;
+import ru.stq.pft.addressbook.model.ContactData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,7 +34,7 @@ public class AddNewContactOldTests {
   @Test
   public void testAddNewContacts() throws Exception {
     initAddNewContact();
-    fillPersonalData(new GroupDataContact("Bozena", "Kaminska", "Milczewska", "Ordona 7B/41", "567-098-098", "bozena.milczewska@gmail.com"));
+    fillPersonalData(new ContactData("Bozena", "Kaminska", "Milczewska", "Ordona 7B/41", "567-098-098", "bozena.milczewska@gmail.com"));
     clickSubmitButton();
     returnToNewContact();
     Logout();
@@ -52,28 +52,28 @@ public class AddNewContactOldTests {
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillPersonalData(GroupDataContact groupDataContact) {
+  private void fillPersonalData(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(groupDataContact.getFirstName());
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(groupDataContact.getMiddelname());
+    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddelname());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(groupDataContact.getLastname());
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(groupDataContact.getAddress());
+    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(groupDataContact.getMobilePhone());
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobilePhone());
     wd.findElement(By.name("email")).click();
     //wd.findElement(By.linkText("add new")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(groupDataContact.getEmail());
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
   }
 
 
