@@ -1,9 +1,11 @@
 package ru.stq.pft.addressbook.tests;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,7 +29,10 @@ public class GroupModificationTests extends BaseTest{
 
         before.remove(before.size()-1);
         before.add(group);
-        Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));///przeksztalcamy listyw zbiory, gdyz zbiory sa nieuporzadkowanymi kolekcjami i w ten sposob bedziemy mogli je porownac po modyfikacji;
+        Comparator<? super GroupData> ById=(g1,g2)->Integer.compare(g1.getId(),g2.getId());
+        before.sort(ById);
+        after.sort(ById);
+        Assert.assertEquals(before,after);///przeksztalcamy listyw zbiory, gdyz zbiory sa nieuporzadkowanymi kolekcjami i w ten sposob bedziemy mogli je porownac po modyfikacji;
     }
 
 }

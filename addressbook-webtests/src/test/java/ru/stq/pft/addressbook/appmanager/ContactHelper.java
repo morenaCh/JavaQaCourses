@@ -36,7 +36,8 @@ public class ContactHelper extends BaseHelper {
 
 
     public void initEditContact() {
-        click(By.xpath("//td[8]/a/img"));
+        click(By.cssSelector("[src='icons/pencil.png']"));
+        //click(By.xpath("//td[8]/a/img"));
     }
 
     public void clickUpdateButton() {
