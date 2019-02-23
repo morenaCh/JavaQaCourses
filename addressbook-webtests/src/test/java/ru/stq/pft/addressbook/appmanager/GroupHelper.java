@@ -72,7 +72,8 @@ public class GroupHelper extends BaseHelper {
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));//tworzymy liste elementow /group,ktora zostanie pobrana ze strony ww
         for (WebElement element : elements) {
             String name = element.getText(); //dla kazdego elementu listy pobieramy text,
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); //pobieramy indetyfikator kazdego elemntu, ktory jest unikatowy dla kazdego elementu//przeksztalcamy String w liczbe
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            //pobieramy indetyfikator kazdego elemntu, ktory jest unikatowy dla kazdego elementu//przeksztalcamy String w liczbe
             GroupData group = new GroupData(id, name, null, null); //tworzymy obiekt typu GroupData i pobieramy tylko name, gdyz tylko to jest nam znane
             groups.add(group);//dodajemy stworzony element do listy
         }
