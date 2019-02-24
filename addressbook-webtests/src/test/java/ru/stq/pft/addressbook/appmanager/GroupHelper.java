@@ -45,17 +45,33 @@ public class GroupHelper extends BaseHelper {
 
 
     public void initGroupModification() {
+
         click(By.xpath("//input[3]"));
     }
 
     public void submitGroupModification() {
+
         click(By.cssSelector("input[type='submit']"));
     }
 
-    public void createGroup(GroupData group) {
+    public void create(GroupData group) {
         initGroupCreation();
         fillGroupForm(group);
         submitGroupCreation();
+        returnToGroupPage();
+    }
+
+    public void modify(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
+    public void delete(int index) {
+        selectGroup(index);
+        deleteSelectedGroups();
         returnToGroupPage();
     }
 
@@ -67,15 +83,14 @@ public class GroupHelper extends BaseHelper {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<GroupData> getGroupList() {
+    public List<GroupData> list() {
         List<GroupData> groups = new ArrayList<>(); //tworzymy liste elementow typu GroupData
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));//tworzymy liste elementow /group,ktora zostanie pobrana ze strony ww
         for (WebElement element : elements) {
             String name = element.getText(); //dla kazdego elementu listy pobieramy text,
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            //pobieramy indetyfikator kazdego elemntu, ktory jest unikatowy dla kazdego elementu//przeksztalcamy String w liczbe
-            GroupData group = new GroupData(id, name, null, null); //tworzymy obiekt typu GroupData i pobieramy tylko name, gdyz tylko to jest nam znane
-            groups.add(group);//dodajemy stworzony element do listy
+            //pobieramy id kazdego elemntu, ktory jest unikatowy dla kazdego elementu//przeksztalcamy String w liczbe
+            groups.add(new GroupData().withId(id).withName(name));//dodajemy stworzony element do listy
         }
         return (groups);
     }

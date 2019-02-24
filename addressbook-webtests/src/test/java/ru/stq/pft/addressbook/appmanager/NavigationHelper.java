@@ -13,7 +13,7 @@ public class NavigationHelper extends BaseHelper {
     public void goToContactPage() {
         click(By.linkText("add new"));}
 
-    public void goToGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.xpath("//div/div[4]/h1"))
                 && wd.findElement(By.xpath("//div/div[4]/h1")).getText().equals("Groups")
                 && isElementPresent(By.name("new"))) {

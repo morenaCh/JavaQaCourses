@@ -1,6 +1,7 @@
 package ru.stq.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.GroupData;
 
@@ -8,24 +9,27 @@ import java.util.List;
 
 public class GroupDeletionTests extends BaseTest {
 
-    @Test //test OK -test ma na celu sprawdzic listy przed i po; sprawdzic po name, czy wlasciwy element zostal usuniety z listy
-    public void testGroupDeletion() throws Exception {
-        app.getNavigationHelper().goToGroupPage();
-        if (!app.getGroupHelper().isThereAgroup()) {
-            app.getGroupHelper().createGroup(new GroupData("test1B", "test2A", "test3A"));
+    @BeforeMethod
+    public void ensurePreconditions(){
+        app.goTo().groupPage();
+        if (app.group().list().size()==0) {
+            app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
         }
-        List<GroupData> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(before.size() - 1);
-        app.getGroupHelper().deleteSelectedGroups();
-        app.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = app.getGroupHelper().getGroupList();
-        Assert.assertEquals(after.size(), before.size() - 1);
+    }
 
-        before.remove(before.size() - 1);//porownujemy ze soba dwie jednakowe listy 1.lista before, pomniejszona o usuniety element; 2.lista after
+    @Test
+    public void testGroupDeletion() throws Exception {
+        List<GroupData> before = app.group().list();
+        int index=before.size() - 1;
+        app.group().delete(index);
+        List<GroupData> after = app.group().list();
+        Assert.assertEquals(after.size(), before.size() - 1);//prównujemy ilość elementów listy before,after
+
+        before.remove(index);//porownujemy 2 listy before,after (po name groupy i dentyfikatorze)
         Assert.assertEquals(before, after);
 
-
     }
+
 }
 
 

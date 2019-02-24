@@ -4,15 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
 public class ContactDeletionTests extends BaseTest {
 
-    @Test
+    @Test(enabled=false)
     public void testContactDeletion() {
-        app.getNavigationHelper().goToHomePage();
+        app.goTo().goToHomePage();
         if (!app.contactHelper().isThereAContact()) {
             app.contactHelper().createContact(new ContactData("Bozena", "Kaminska", "Chilecka", "Ordona 7B/41", "567098098", "bozena.chilecka@gmail.com", "test1"), true);
         }
@@ -38,7 +37,7 @@ public class ContactDeletionTests extends BaseTest {
 
 
 //1 version Liczenie elementow na stronie www(video 3,4 ) i wybór elemtu po indeksie
-        /*app.getNavigationHelper().goToHomePage();
+        /*app.goTo().goToHomePage();
         if(!app.contactHelper().isThereAContact()){
             app.contactHelper().createContact(new ContactData("Bozena", "Kaminska", "Chilecka", "Ordona 7B/41", "567-098-098", "bozena.chilecka@gmail.com","test1"),true);
         }
@@ -52,7 +51,7 @@ public class ContactDeletionTests extends BaseTest {
 
 //2 version -video 5, zamieniamy int na listę i porównujemy tylko rozmiary listy
         /*
-         app.getNavigationHelper().goToHomePage();
+         app.goTo().goToHomePage();
         if(!app.contactHelper().isThereAContact()){
             app.contactHelper().createContact(new ContactData("Bozena", "Kaminska", "Chilecka", "Ordona 7B/41", "567-098-098", "bozena.chilecka@gmail.com","test1"),true);
         }

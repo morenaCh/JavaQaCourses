@@ -53,11 +53,11 @@ public class ApplicationManager {
         return contactHelper;
     }
 
-    public GroupHelper getGroupHelper() { //metoda do ktorej delegujemy 2.musimy metode do ktorej delegujemy tutaj zwrocic;
+    public GroupHelper group() { //metoda do ktorej delegujemy 2.musimy metode do ktorej delegujemy tutaj zwrocic;
         return groupHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
