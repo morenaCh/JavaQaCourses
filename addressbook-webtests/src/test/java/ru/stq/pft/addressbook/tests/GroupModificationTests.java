@@ -4,36 +4,31 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.GroupData;
+import java.util.Set;
 
-import java.util.Comparator;
-import java.util.List;
-
-public class GroupModificationTests extends BaseTest{
+public class GroupModificationTests extends BaseTest {
 
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePreconditions() {
         app.goTo().groupPage();
-        if (app.group().list().size()==0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1").withHeader("test2").withFooter("test3"));
         }
     }
 
-    @Test //test failed
-    public void testGroupModification(){
-        List<GroupData> before=app.group().list();
-        int index=before.size()-1;//0 -first element; before-1 - ostatni element
-        GroupData group=new GroupData()
-                .withId(before.get(index).getId()).withName("test1").withHeader("test2").withFooter("test3");
-        app.group().modify(index, group);
-        List<GroupData>after=app.group().list();
+    @Test
+    public void testGroupModification() {
+        Set<GroupData> before = app.group().all();
+        GroupData modifiedGroup = before.iterator().next();
+        GroupData group = new GroupData()
+                .withId(modifiedGroup.getId()).withName("test1").withHeader("test2").withFooter("test3");
+        app.group().modify(group);
+        Set<GroupData> after = app.group().all();
         Assert.assertEquals(after.size(), before.size());//liczba elementow jest taka sama przed i po wykonaniu testu;
 
-        before.remove(index);
+        before.remove(modifiedGroup);
         before.add(group);
-        Comparator<? super GroupData> ById=(g1,g2)->Integer.compare(g1.getId(),g2.getId());
-        before.sort(ById);
-        after.sort(ById);
-        Assert.assertEquals(before,after);
+        Assert.assertEquals(before, after);
     }
 
 }
