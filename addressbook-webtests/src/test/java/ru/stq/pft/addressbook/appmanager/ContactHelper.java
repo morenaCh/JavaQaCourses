@@ -39,12 +39,6 @@ public class ContactHelper extends BaseHelper {
         click(By.linkText("home"));
     }
 
-
-    public void initEditContact() {
-        click(By.cssSelector("[src='icons/pencil.png']"));
-        //click(By.xpath("//td[8]/a/img"));
-    }
-
     public void clickUpdateButton() {
         click(By.name("update"));
     }
@@ -102,8 +96,14 @@ public class ContactHelper extends BaseHelper {
 
     public void selectContact(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
-        wd.findElements(By.cssSelector("[src='icons/pencil.png']")).get(index).click();
+        //wd.findElements(By.cssSelector("[src='icons/pencil.png']")).get(index).click();
     }
+
+    public void initEditContact(int index) {
+        wd.findElements(By.cssSelector("[src='icons/pencil.png']")).get(index).click();;
+        //click(By.xpath("//td[8]/a/img"));
+    }
+
 
     public int getContactCount() {
         return wd.findElements(By.name("selected[]")).size();
