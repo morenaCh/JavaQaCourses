@@ -13,7 +13,7 @@ public class ApplicationManager {
     public WebDriver wd;
     private String browser;
 
-    public ContactHelper contactHelper;
+    public ContactHelper contact;
     private GroupHelper groupHelper;
     private NavigationHelper navigationHelper;
     private SessionHelper sessionHelper; //metoda do ktorej delegujemy 1.link do klasy delegowanej
@@ -36,7 +36,7 @@ public class ApplicationManager {
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);//metoda do ktorej delegujemy 2.inicjalizacja drivera
-        contactHelper = new ContactHelper(wd);
+        contact = new ContactHelper(wd);
         sessionHelper.login("admin", "secret");
     }
 
@@ -49,8 +49,8 @@ public class ApplicationManager {
         wd.switchTo().alert().accept();
     }
 
-    public ContactHelper contactHelper() {
-        return contactHelper;
+    public ContactHelper contact() {
+        return contact;
     }
 
     public GroupHelper group() { //metoda do ktorej delegujemy 2.musimy metode do ktorej delegujemy tutaj zwrocic;

@@ -9,7 +9,7 @@ import ru.stq.pft.addressbook.appmanager.ApplicationManager;
 
 public class BaseTest {
 
-    protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+    public static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() throws Exception {
