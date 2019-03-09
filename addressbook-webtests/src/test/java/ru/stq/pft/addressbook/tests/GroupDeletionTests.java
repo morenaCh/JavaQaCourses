@@ -19,13 +19,13 @@ public class GroupDeletionTests extends BaseTest {
         }
     }
 
-    @Test(enabled=false)
+    @Test
     public void testGroupDeletion() throws Exception {
         Groups before = app.group().all();
         GroupData deletedGroup=before.iterator().next();//zostanie zwrocony  elem. zbioru,ktory losowo bedzie znaleziony;
         app.group().delete(deletedGroup);
+        assertThat(app.group().count(), equalTo(before.size()-1));
         Groups after = app.group().all();
-        assertEquals(after.size(), before.size() - 1);//prównujemy ilość elementów listy before,after
         assertThat(after, equalTo(before.without(deletedGroup)));
 
 

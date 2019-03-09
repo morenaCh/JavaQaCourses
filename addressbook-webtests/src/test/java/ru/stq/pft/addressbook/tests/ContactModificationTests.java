@@ -33,9 +33,8 @@ public class ContactModificationTests extends BaseTest {
                 .withMobilePhone("511011011").withEmail( "bozena.kam25@gmail.com")
                 .withGroup(null);
         app.contact.modify(contact);
+        assertThat(app.group().count(), equalTo(before.size()));
         Contacts after = app.contact.all();
-        assertThat(after.size(), equalTo(before.size()));
-
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 
