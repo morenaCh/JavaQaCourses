@@ -1,0 +1,29 @@
+<list>
+  <contact>
+    <firstName>FirstNamen0</firstName>
+    <middelname>Middelname0</middelname>
+    <lastname>Lastname0</lastname>
+    <address>Address 88/40</address>
+    <mobilePhone>511011010</mobilePhone>
+    <email>bozena.kam0@gmail.com</email>
+    <group>test 0</group>
+  </contact>
+  <contact>
+    <firstName>FirstNamen1</firstName>
+    <middelname>Middelname1</middelname>
+    <lastname>Lastname1</lastname>
+    <address>Address 88/41</address>
+    <mobilePhone>511011011</mobilePhone>
+    <email>bozena.kam1@gmail.com</email>
+    <group>test 1</group>
+  </contact>
+  <contact>
+    <firstName>FirstNamen2</firstName>
+    <middelname>Middelname2</middelname>
+    <lastname>Lastname2</lastname>
+    <address>Address 88/42</address>
+    <mobilePhone>511011012</mobilePhone>
+    <email>bozena.kam2@gmail.com</email>
+    <group>test 2</group>
+  </contact>
+</list>

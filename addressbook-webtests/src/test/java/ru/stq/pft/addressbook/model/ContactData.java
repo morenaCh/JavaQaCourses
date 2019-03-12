@@ -1,24 +1,37 @@
 package ru.stq.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
+import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contact")
 public class ContactData {
-
+    @XStreamOmitField
     public  int id=Integer.MAX_VALUE;
+    @Expose
     public String firstName;
+    @Expose
     public String middelname;
+    @Expose
     public String lastname;
+    @Expose
     public String address;
+    @Expose
     public String mobilePhone;
     public String homePhone;
     public String workPhone;
     public String allPhones;
+    @Expose
     public String email;
     public String emailSecond;
     public String emailThird;
     public String allEmail;
+    @Expose
     public String group;
-
+    public File photo;
 
     public int getId() {
         return id;
@@ -74,6 +87,10 @@ public class ContactData {
 
     public String getGroup() {
         return this.group;
+    }
+
+    public File getPhoto() {
+        return photo;
     }
 
     public ContactData withId(int id) {
@@ -145,6 +162,11 @@ public class ContactData {
 
     public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
         return this;
     }
 

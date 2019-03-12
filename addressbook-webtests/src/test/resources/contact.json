@@ -1,0 +1,29 @@
+[
+  {
+    "firstName": "FirstNamen0",
+    "middelname": "Middelname0",
+    "lastname": "Lastname0",
+    "address": "Address 88/40",
+    "mobilePhone": "511011010",
+    "email": "bozena.kam0@gmail.com",
+    "group": "test 0"
+  },
+  {
+    "firstName": "FirstNamen1",
+    "middelname": "Middelname1",
+    "lastname": "Lastname1",
+    "address": "Address 88/41",
+    "mobilePhone": "511011011",
+    "email": "bozena.kam1@gmail.com",
+    "group": "test 1"
+  },
+  {
+    "firstName": "FirstNamen2",
+    "middelname": "Middelname2",
+    "lastname": "Lastname2",
+    "address": "Address 88/42",
+    "mobilePhone": "511011012",
+    "email": "bozena.kam2@gmail.com",
+    "group": "test 2"
+  }
+]
