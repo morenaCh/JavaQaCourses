@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stq.pft.addressbook.model.ContactData;
-import ru.stq.pft.addressbook.model.GroupData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -41,7 +40,7 @@ public class ContactDataGenerator {
     private void run() throws IOException {
         List<ContactData> contacts = generateContact(count);
         if (format.equals("csv")) {
-            save(contacts, new File(file));
+            saveAsCsv(contacts, new File(file));
         } else if (format.equals("xml")) {
             saveAsXml(contacts, new File(file));
         } else if (format.equals("json")) {
@@ -55,9 +54,9 @@ public class ContactDataGenerator {
         //https://github.com/google/gson/blob/master/UserGuide.md
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(contacts);
-        Writer writer=new FileWriter(file);
-        writer.write(json);
-        writer.close();
+        try(Writer writer=new FileWriter(file)){
+            writer.write(json);
+        }
     }
 
 
@@ -66,9 +65,19 @@ public class ContactDataGenerator {
         XStream xstream = new XStream();
         xstream.processAnnotations(ContactData.class);
         String xml = xstream.toXML(contacts);
-        Writer writer=new FileWriter(file);
-        writer.write(xml);
-        writer.close();
+        try(Writer writer=new FileWriter(file)){
+            writer.write(xml);
+        }
+    }
+
+    private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
+        try(Writer writer=new FileWriter(file)) {
+            for (ContactData contact : contacts) {
+                writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;\n",
+                        contact.getFirstName(), contact.getMiddelname(), contact.getLastname(), contact.getAddress(),
+                        contact.getMobilePhone(), contact.getEmail(), contact.getGroup()));
+            }
+        }
     }
 
     private List<ContactData> generateContact(int count) {
@@ -85,16 +94,6 @@ public class ContactDataGenerator {
         }
 
         return contacts;
-    }
-
-    private void save(List<ContactData> contacts, File file) throws IOException {
-        Writer writer=new FileWriter(file);
-        for(ContactData contact:contacts){
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;\n",
-                    contact.getFirstName(),contact.getMiddelname(),contact.getLastname(),contact.getAddress(),
-                    contact.getMobilePhone(),contact.getEmail(),contact.getGroup()));
-        }
-        writer.close();
     }
 
 }
