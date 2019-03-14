@@ -3,6 +3,8 @@ package ru.stq.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.GroupData;
@@ -20,6 +22,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends BaseTest {
+
+
     //http://testng.org/doc/documentation-main.html   dokuemntacja do pliku xml do testNG
     /*@DataProvider
     public Iterator<Object[]> validGroups() {
@@ -73,6 +77,7 @@ public class GroupCreationTests extends BaseTest {
         assertThat(after.size(), equalTo(before.size() + 1));//add 1 elem. do listy
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt(g -> g.getId()).max().getAsInt()))));
+
     }
 
 

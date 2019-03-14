@@ -52,6 +52,7 @@ public class GroupDataGenerator {
 
     private void saveAsJson(List<GroupData> groups, File file) throws IOException {
         //https://github.com/google/gson/blob/master/UserGuide.md
+        //https://logback.qos.ch/
         Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String json = gson.toJson(groups);
         try(Writer writer=new FileWriter(file)){
