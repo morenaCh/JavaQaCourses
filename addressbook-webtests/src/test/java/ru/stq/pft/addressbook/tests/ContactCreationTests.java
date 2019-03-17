@@ -56,17 +56,31 @@ public class ContactCreationTests extends BaseTest {
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
         app.goTo().homePage();
-        Contacts before = app.contact.all();
+        Contacts before = app.db().contacts();
         app.contact().create(contact, true);
-        /*ContactData contact = new ContactData()
-                .withFirstName("Bozena")
-                .withMiddelname("Kaminska").withLastname("Jezioranska")
-                .withAddress("Miklaszewska 88/41").withMobilePhone("511011011")
-                .withEmail("bozena.kam25@gmail.com").withGroup("test1");*/
-
         app.contact().homePage();
         assertThat(app.contact().count(), equalTo(before.size()+1));
-        Contacts after = app.contact.all();
+        Contacts after = app.db().contacts();
+        assertThat(after, equalTo(before.
+                withAdded(contact.withId(after.stream().mapToInt(g -> g.getId()).max().getAsInt()))));
+    }
+
+    @Test
+    public void testContactCreationOld() throws Exception {
+        app.goTo().homePage();
+        Contacts before = app.db().contacts();
+        File photo=new File("src/test/resources/kwiatek.jpg");
+        ContactData contact = new ContactData()
+                .withFirstName("Bozena").withMiddelname("Kaminska")
+                .withLastname( "Chilecka").withPhoto(photo).withCompany("OBI")
+                .withTitle("Human Recources Manager").withAddress("Ordona 7B/41")
+                .withMobilePhone("567098098").withHomePhone("22445959").withWorkPhone("2253454432")
+                .withEmail("bozena.chilecka@gmail.com").withEmailSecond("bozenakam25@gmail.com")
+                .withEmailThird("bozna@wp.pl").withGroup("test1");
+        app.contact().create(contact, true);
+        app.contact().homePage();
+        assertThat(app.contact().count(), equalTo(before.size()+1));
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.
                 withAdded(contact.withId(after.stream().mapToInt(g -> g.getId()).max().getAsInt()))));
     }
@@ -74,18 +88,19 @@ public class ContactCreationTests extends BaseTest {
     @Test
     public void testContactWithPhoto() throws Exception {
         app.goTo().homePage();
-        Contacts before = app.contact.all();
+        Contacts before = app.db().contacts();
         File photo=new File("src/test/resources/kwiatek.jpg");
         ContactData contact = new ContactData()
-                .withFirstName("Bozena")
-                .withMiddelname("Kaminska").withLastname("Jezioranska")
-                .withPhoto(photo)
-                .withAddress("Miklaszewska 88/41")
-                .withGroup("test1");
+                .withFirstName("Bozena").withMiddelname("Kaminska")
+                .withLastname( "Chilecka").withPhoto(photo).withCompany("OBI")
+                .withTitle("Human Recources Manager").withAddress("Ordona 7B/41")
+                .withMobilePhone("567098098").withHomePhone("22445959").withWorkPhone("2253454432")
+                .withEmail("bozena.chilecka@gmail.com").withEmailSecond("bozenakam25@gmail.com")
+                .withEmailThird("bozna@wp.pl").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().homePage();
         assertThat(app.contact().count(), equalTo(before.size()+1));
-        Contacts after = app.contact.all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before.
                 withAdded(contact.withId(after.stream().mapToInt(g -> g.getId()).max().getAsInt()))));
     }

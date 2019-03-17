@@ -11,57 +11,63 @@ import java.util.Objects;
 
 @XStreamAlias("contact")
 @Entity
-@Table(name="addressbook")
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
     @Id
-    @Column(name="id")
-    public  int id=Integer.MAX_VALUE;
+    @Column(name = "id")
+    public int id = Integer.MAX_VALUE;
 
     @Expose
-    @Column(name="firstname")
+    @Column(name = "firstname")
     public String firstName;
 
     @Expose
-    @Column(name="middlename")
+    @Column(name = "middlename")
     public String middelname;
 
     @Expose
-    @Column(name="lastname")
+    @Column(name = "lastname")
     public String lastname;
 
+    @Column(name = "company")
+    public String company;
+
+    @Column(name = "title")
+    public String title;
+
     @Expose
-    @Column(name="address")
-    @Type(type="text")
+    @Column(name = "address")
+    @Type(type = "text")
     public String address;
 
     @Expose
-    @Column(name="mobile")
-    @Type(type="text")
+    @Column(name = "mobile")
+    @Type(type = "text")
     public String mobilePhone;
 
-    @Column(name="home")
-    @Type(type="text")
+    @Column(name = "home")
+    @Type(type = "text")
     public String homePhone;
 
-    @Column(name="work")
-    @Type(type="text")
+    @Column(name = "work")
+    @Type(type = "text")
     public String workPhone;
 
     @Transient
     public String allPhones;
 
     @Expose
-    @Column(name="email")
-    @Type(type="text")
+    @Column(name = "email")
+    @Type(type = "text")
     public String email;
 
-    @Column(name="email2")
-    @Type(type="text")
+    @Column(name = "email2")
+    @Type(type = "text")
     public String emailSecond;
 
-    @Column(name="email3")
-    @Type(type="text")
+    @Column(name = "email3")
+    @Type(type = "text")
     public String emailThird;
 
     @Transient
@@ -71,8 +77,8 @@ public class ContactData {
     @Transient
     public String group;
 
-    @Column(name="photo")
-    @Type(type="text")
+    @Column(name = "photo")
+    @Type(type = "text")
     public String photo;
 
     public int getId() {
@@ -89,6 +95,14 @@ public class ContactData {
 
     public String getLastname() {
         return lastname;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getAddress() {
@@ -158,6 +172,16 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withCompany(String company) {
+        this.company = company;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
+        this.title = title;
+        return this;
+    }
+
     public ContactData withAddress(String address) {
         this.address = address;
         return this;
@@ -169,12 +193,12 @@ public class ContactData {
     }
 
     public ContactData withHomePhone(String homePhone) {
-        this.homePhone=homePhone;
+        this.homePhone = homePhone;
         return this;
     }
 
     public ContactData withWorkPhone(String workPhone) {
-        this.workPhone=workPhone;
+        this.workPhone = workPhone;
         return this;
     }
 
@@ -222,13 +246,22 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstName, that.firstName) &&
+                Objects.equals(middelname, that.middelname) &&
                 Objects.equals(lastname, that.lastname) &&
-                Objects.equals(address, that.address) ;
+                Objects.equals(company, that.company) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(mobilePhone, that.mobilePhone) &&
+                Objects.equals(homePhone, that.homePhone) &&
+                Objects.equals(workPhone, that.workPhone) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(emailSecond, that.emailSecond) &&
+                Objects.equals(emailThird, that.emailThird);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastname, address);
+        return Objects.hash(id, firstName, middelname, lastname, company, title, address, mobilePhone, homePhone, workPhone, email, emailSecond, emailThird);
     }
 
     @Override
@@ -236,8 +269,18 @@ public class ContactData {
         return "ContactData{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
+                ", middelname='" + middelname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", address='" + address + '\'' ;
+                ", company='" + company + '\'' +
+                ", title='" + title + '\'' +
+                ", address='" + address + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", emailSecond='" + emailSecond + '\'' +
+                ", emailThird='" + emailThird + '\'' +
+                '}';
     }
 
 

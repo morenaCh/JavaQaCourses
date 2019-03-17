@@ -8,6 +8,7 @@ import org.testng.Assert;
 import ru.stq.pft.addressbook.model.ContactData;
 import ru.stq.pft.addressbook.model.Contacts;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,9 +32,15 @@ public class ContactHelper extends BaseHelper {
         type(By.name("middlename"), contactData.getMiddelname());
         type(By.name("lastname"), contactData.getLastname());
         attach(By.name("photo"), contactData.getPhoto());
+        type(By.name("company"), contactData.getCompany());
+        type(By.name("title"), contactData.getTitle());
         type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
         type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getworkPhone());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmailSecond());
+        type(By.name("email3"), contactData.getEmailThird());
         if (creationM) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
@@ -141,7 +148,10 @@ public class ContactHelper extends BaseHelper {
     public ContactData infoFormEditForm(ContactData contact) {
         initEditContactById(contact.getId());
         String firstname =  wd.findElement(By.name("firstname")).getAttribute("value");
+        String middlename = wd.findElement(By.name("middlename")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String company = wd.findElement(By.name("company")).getAttribute("value");
+        String title = wd.findElement(By.name("title")).getAttribute("value");
         String address=wd.findElement(By.name("address")).getAttribute("value");
         String email=wd.findElement(By.name("email")).getAttribute("value");
         String email2=wd.findElement(By.name("email2")).getAttribute("value");
@@ -149,9 +159,11 @@ public class ContactHelper extends BaseHelper {
         String home =  wd.findElement(By.name("home")).getAttribute("value");
         String mobile =  wd.findElement(By.name("mobile")).getAttribute("value");
         String work =  wd.findElement(By.name("work")).getAttribute("value");
+        File photo=new File("src/test/resources/kwiatek.jpg");
         wd.navigate().back();
-        return new ContactData().withId(contact.getId()).withFirstName(firstname)
-                .withLastname(lastname).withAddress(address)
+        return new ContactData().withId(contact.getId()).withFirstName(firstname).withMiddelname(middlename)
+                .withLastname(lastname).withPhoto(photo).withCompany(company).withTitle(title)
+                .withAddress(address)
                 .withEmail(email).withEmailSecond(email2).withEmailThird(email3)
                 .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
 }
