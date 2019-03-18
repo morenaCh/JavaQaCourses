@@ -7,6 +7,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stq.pft.addressbook.model.ContactData;
 import ru.stq.pft.addressbook.model.Contacts;
+import ru.stq.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,6 +56,7 @@ public class ContactCreationTests extends BaseTest {
 
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
+        Groups groups = app.db().groups();
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         app.contact().create(contact, true);
@@ -67,6 +69,7 @@ public class ContactCreationTests extends BaseTest {
 
     @Test
     public void testContactCreationOld() throws Exception {
+        Groups groups = app.db().groups();
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         File photo=new File("src/test/resources/kwiatek.jpg");
@@ -76,7 +79,7 @@ public class ContactCreationTests extends BaseTest {
                 .withTitle("Human Recources Manager").withAddress("Ordona 7B/41")
                 .withMobilePhone("567098098").withHomePhone("22445959").withWorkPhone("2253454432")
                 .withEmail("bozena.chilecka@gmail.com").withEmailSecond("bozenakam25@gmail.com")
-                .withEmailThird("bozna@wp.pl").withGroup("test1");
+                .withEmailThird("bozna@wp.pl").inGroup(groups.iterator().next());
         app.contact().create(contact, true);
         app.contact().homePage();
         assertThat(app.contact().count(), equalTo(before.size()+1));
@@ -87,6 +90,7 @@ public class ContactCreationTests extends BaseTest {
 
     @Test
     public void testContactWithPhoto() throws Exception {
+        Groups groups = app.db().groups();
         app.goTo().homePage();
         Contacts before = app.db().contacts();
         File photo=new File("src/test/resources/kwiatek.jpg");
@@ -96,7 +100,7 @@ public class ContactCreationTests extends BaseTest {
                 .withTitle("Human Recources Manager").withAddress("Ordona 7B/41")
                 .withMobilePhone("567098098").withHomePhone("22445959").withWorkPhone("2253454432")
                 .withEmail("bozena.chilecka@gmail.com").withEmailSecond("bozenakam25@gmail.com")
-                .withEmailThird("bozna@wp.pl").withGroup("test1");
+                .withEmailThird("bozna@wp.pl").inGroup(groups.iterator().next());
         app.contact().create(contact, true);
         app.contact().homePage();
         assertThat(app.contact().count(), equalTo(before.size()+1));
