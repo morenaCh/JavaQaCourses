@@ -88,6 +88,9 @@ public class ContactData {
     @JoinTable(name = "address_in_groups", joinColumns=@JoinColumn(name="id"),inverseJoinColumns = @JoinColumn(name="group_id"))
     private Set<GroupData> groups=new HashSet<GroupData>();
 
+    @Transient
+    private String name;
+
     public int getId() {
         return id;
     }
@@ -154,6 +157,7 @@ public class ContactData {
         }
         return new File(photo);
     }
+    public String getName() {return name;}
 
     public ContactData withId(int id) {
         this.id = id;
@@ -235,6 +239,11 @@ public class ContactData {
     public ContactData withPhoto(File photo) {
         this.photo = photo.getPath();
         return this;
+    }
+
+    public ContactData withName(String name) {
+        this.name = name;
+        return  this;
     }
 
     @Override

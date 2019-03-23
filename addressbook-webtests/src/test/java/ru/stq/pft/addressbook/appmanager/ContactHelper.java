@@ -205,4 +205,16 @@ public class ContactHelper extends BaseHelper {
         }
 
 
+    public ContactData infoFromDetails(ContactData contact) {
+        initContactDetailsById(contact.getId());
+        String detailName = wd.findElement(By.id("content")).getText();
+        return new ContactData().withId(contact.getId()).withName(detailName);
+    }
+    private void initContactDetailsById(int id) {
+        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+        WebElement row = checkbox.findElement(By.xpath("./../.."));
+        List<WebElement> cells = row.findElements(By.tagName("td"));
+        cells.get(6).findElement(By.tagName("a")).click();
+    }
+
     }
