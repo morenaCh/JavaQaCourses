@@ -55,7 +55,7 @@ public class ContactDetailsTests extends BaseTest {
                 .collect(Collectors.joining("\n"));
     }
 
-    private String margeTitles(ContactData contact) {
+    private String margeNameAndSurname(ContactData contact) {
         return Arrays.asList((contact.getFirstName() + " " + contact.getLastname())
                 .trim(),contact.getTitle(), contact.getCompany(), contact.getAddress())
                 .stream().filter((n) -> !n.equals(""))
@@ -63,7 +63,7 @@ public class ContactDetailsTests extends BaseTest {
     }
 
     private String margeDetails(ContactData contact) {
-        return Arrays.asList(margeTitles(contact),
+        return Arrays.asList(margeNameAndSurname(contact),
                 margePhonesDetails(contact), mergeEmails(contact))
                 .stream().filter((d) -> !d.equals(""))
                 .collect(Collectors.joining("\n"));
